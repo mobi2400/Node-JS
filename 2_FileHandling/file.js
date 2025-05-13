@@ -23,3 +23,13 @@ fs.readFile('hello.txt', 'utf8', (err, data) => {
 //this is Synchronous file handling 
 const data = fs.readFileSync('hello.txt', 'utf8');
 console.log('File content:', data);
+// use fs.appendFile to append data to a file
+fs.appendFile('hello.txt', ' Appending this text.', (err) => {
+  if (err) {
+    console.error('Error appending to file:', err);
+  } else {
+    console.log('Data appended successfully');
+  }
+});
+// appending data file prevents overwriting the file
+// use fs.unlink to delete a file
