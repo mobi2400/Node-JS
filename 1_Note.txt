@@ -1,1 +1,3 @@
 main purpose was to help JS code run anywhere
+help to create webServer using JS
+NodeJS is a Runtime env for JS[not a Framework or Library]
