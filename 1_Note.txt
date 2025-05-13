@@ -1,3 +1,12 @@
 main purpose was to help JS code run anywhere
 help to create webServer using JS
 NodeJS is a Runtime env for JS[not a Framework or Library]
+
+           ARCHITECTURE OF NodeJS
+Any request is made by two methods async or sync
+Asynchronus[Non-Blocking oprations] -- just complete the operation and return
+
+Asynchronous operations allow a program to continue executing other tasks while waiting for a long-running operation to complete in the background.
+synchronus[Blocking operations] -- in this we asssign a worker to get job done and  then send they respond to the user once it is done
+
+A synchronous function executes its tasks sequentially, completing one task before moving on to the next.
