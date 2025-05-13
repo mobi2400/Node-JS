@@ -1,7 +1,4 @@
 const { add , subtract, multiply } = require('./math.js'); // Importing functions from math.js
-// Using the imported functions
-//require is used to import modules in Node.js
-
 
 
 console.log(add(2, 3));

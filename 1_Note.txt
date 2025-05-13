@@ -10,3 +10,6 @@ Asynchronous operations allow a program to continue executing other tasks while 
 synchronus[Blocking operations] -- in this we asssign a worker to get job done and  then send they respond to the user once it is done
 
 A synchronous function executes its tasks sequentially, completing one task before moving on to the next.
+
+Default worker to job is - 4
+max it depends on server CPU core
