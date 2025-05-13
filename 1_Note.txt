@@ -1,0 +1,1 @@
+main purpose was to help JS code run anywhere
