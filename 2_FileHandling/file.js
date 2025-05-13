@@ -12,6 +12,7 @@ fs.writeFile('hello.txt', 'Hello World!', (err) => {
   console.log('File written successfully')};
 
 //this is Asynchronous file handling
+//call bback function is used to handle the result of the operation and to handle errors and important to use callback function
 fs.readFile('hello.txt', 'utf8', (err, data) => {
   if (err) {
     console.error('Error reading file:', err);
