@@ -14,3 +14,5 @@ self-descriptive messages returned to the client have enough information to desc
 hypertext/hypermedia is available, meaning that after accessing a resource the client should be able to use hyperlinks to find all other currently available actions they can take.
 A layered system that organizes each type of server (those responsible for security, load-balancing, etc.) involved the retrieval of requested information into hierarchies, invisible to the client.
 Code-on-demand (optional): the ability to send executable code from the server to the client when requested, extending client functionality. 
+
+Base64 encoding -- general aunthentication method in API
