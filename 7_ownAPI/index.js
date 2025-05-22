@@ -18,6 +18,11 @@ app.get("/jokes/:id",(req, res) => {
     res.json(foundJokes)
 })
 
+app.get("/filter",(req,res)=>{
+    const type = req.query.type;
+    const jokesType = jokes.filter((jokes)=>jokes.type === type);
+    res.json(jokesType);
+})
 
 var jokes = [
   {
