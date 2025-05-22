@@ -1,4 +1,17 @@
+import express from "express";
+import bodyParser from "body-parser";
 
+const app = express();
+const port = 3000;
+const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/random", (req, res) => {
+  const randomIndex = Math.floor(Math.random() * jokes.length);
+  const randomJoke = jokes[randomIndex];
+    res.json(randomJoke);
+});
 
 var jokes = [
   {
