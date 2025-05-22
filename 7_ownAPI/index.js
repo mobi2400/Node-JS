@@ -33,7 +33,17 @@ app.post("/jokes",(req,res)=>{
     jokes.push(joke);
    res.json(joke)
 })
-
+app.put("/jokes/:id",(req,res)=>{
+  const id = parseInt(req.body.id);
+  const replacementJoke = {
+    id : id,
+    jokeText : req.body.text,
+    jokeType : req.body.type
+  }
+  jokesSearchIndex = jokes.findIndex((joke)=> jokes.id === id);
+  jokes[jokesSearchIndex] = replacementJoke;
+  res.json(replacementJoke)
+})
 
 
 
