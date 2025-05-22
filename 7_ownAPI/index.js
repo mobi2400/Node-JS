@@ -14,15 +14,36 @@ app.get("/random", (req, res) => {
 });
 app.get("/jokes/:id",(req, res) => {
     const id = req.params.id;
-    const foundJokes = jokes.find((jokes)=>jokes.id === id);
+    const foundJokes = jokes.find((joke)=>jokes.id === id);
     res.json(foundJokes)
 })
 
 app.get("/filter",(req,res)=>{
     const type = req.query.type;
-    const jokesType = jokes.filter((jokes)=>jokes.type === type);
+    const jokesType = jokes.filter((joke)=>jokes.type === type);
     res.json(jokesType);
 })
+
+app.post("/jokes",(req,res)=>{
+    const joke ={
+        id : jokes.length +1,
+        jokeText : req.body.text,
+        jokeType : req.body.type
+    }
+    jokes.push(joke);
+   res.json(joke)
+})
+
+
+
+
+
+
+
+
+
+
+
 
 var jokes = [
   {
