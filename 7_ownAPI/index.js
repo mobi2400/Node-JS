@@ -12,6 +12,12 @@ app.get("/random", (req, res) => {
   const randomJoke = jokes[randomIndex];
     res.json(randomJoke);
 });
+app.get("/jokes/:id",(req, res) => {
+    const id = req.params.id;
+    const foundJokes = jokes.find((jokes)=>jokes.id === id);
+    res.json(foundJokes)
+})
+
 
 var jokes = [
   {
