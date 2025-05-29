@@ -43,7 +43,7 @@ app.post("/register",async (req,res)=>{
     }
     else{
         bcrypt.hash(password,saltRound,async (err,hash)=>{
-            const result = await db.query("INSERT INTO users (eamil, password) VALUES ($1,$2)",
+            const result = await db.query("INSERT INTO users (email, password) VALUES ($1,$2)",
                 [email,hash]
             );
             console.log(result);
@@ -57,7 +57,37 @@ app.post("/register",async (req,res)=>{
     }
 })
 
-app.post("/login",async(req,res)=>{})
+app.post("/login",async(req,res)=>{
+    const email = req.body.username;
+    const LoginPassword = req.body.password;
+    try{
+        const result = await db.query("SELECT * FROM users WHERE  email = $1",[email])
+        if(result.rows.length>0){
+            const user = res.rows[0];
+            const storedPassword = user.password;
+            bcrypt.compare(LoginPassword,storedPassword,(err,result)=>{
+                if(err){
+                    alert(" error in fetching the detail")
+                }
+                else{
+                    if(result){
+                        res.render("secret.ejs")
+                    }
+                    else{
+                        alert("entered the wrong Password")
+                        console.error("wrong Password");
+                        
+                    }
+                }
+
+            })
+        }
+
+    }catch(err){
+        console.log(err);
+        
+    }
+})
 
 app.listen(port,(req,res)=>{
     console.log(`host listening on port ${port}`);
