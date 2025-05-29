@@ -31,7 +31,31 @@ app.get("/register", (req, res) => {
   res.render("register.ejs");
 });
 
-app.post("/register",async (req,res)=>{})
+app.post("/register",async (req,res)=>{
+    const email = req.body.username;
+    const password = req.body.password;
+    try{
+        const checkresult = await db.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ])
+    if(checkresult.rows.length>0){
+        res.send("email already exist. Try logging in")
+    }
+    else{
+        bcrypt.hash(password,saltRound,async (err,hash)=>{
+            const result = await db.query("INSERT INTO users (eamil, password) VALUES ($1,$2)",
+                [email,hash]
+            );
+            console.log(result);
+            res.render("secret.ejs")
+            
+        })
+    }
+
+    }catch(err){
+
+    }
+})
 
 app.post("/login",async(req,res)=>{})
 
