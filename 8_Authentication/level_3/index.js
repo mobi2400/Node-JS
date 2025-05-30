@@ -57,7 +57,7 @@ passport.use(
          async function verify(username,password,cb){
   try {
     const result = await db.query("SELECT * FROM users WHERE email = $1", [
-      email,
+      username,
     ]);
     if (result.rows.length > 0) {
       const user = result.rows[0];
@@ -80,6 +80,14 @@ passport.use(
     console.log(err);
   }
 }))
+
+passport.serializeUser((user,cb)=>{
+  cb(null,user);
+});
+
+passport.deserializeUser((user,cb)=>{
+  cb(null,user);
+})
 app.listen(port,(req,res)=>{
     console.log(`website is listening at ${port}`);
     
