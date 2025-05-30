@@ -17,6 +17,9 @@ app.use(session({
     secret:"TopSecretword",
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 1000*60*60*24,
+    }
 }));
 
 app.use(passport.initialize())
@@ -48,7 +51,10 @@ app.get("/secrets",(req,res)=>{
     }
 })
 
-app.post("/login",(req,res)=>{})
+app.post("/login",passport.authenticate("local",{
+  successRedirect : "/secret",
+  failureRedirect : "/login"
+}))
 
 app.post("/register",(req,res)=>{})
 
