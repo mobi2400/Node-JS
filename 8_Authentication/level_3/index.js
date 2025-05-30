@@ -56,7 +56,42 @@ app.post("/login",passport.authenticate("local",{
   failureRedirect : "/login"
 }))
 
-app.post("/register",(req,res)=>{})
+app.post("/register",async (req,res)=>{
+    const email = req.body.username;
+  const password = req.body.password;
+
+  try {
+    const checkResult = await db.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+
+    if (checkResult.rows.length > 0) {
+      res.send("Email already exists. Try logging in.");
+    } else {
+      //hashing the password and saving it in the database
+      bcrypt.hash(password, saltRounds, async (err, hash) => {
+        if (err) {
+          console.error("Error hashing password:", err);
+        } else {
+          console.log("Hashed Password:", hash);
+          await db.query(
+            "INSERT INTO users (email, password) VALUES ($1, $2)",
+            [email, hash]
+          );
+          const user = result.row[0];
+          req.login(user,(err)=>{
+            console.log(err)
+            res.redirect("/secrets")
+            
+          })
+          res.render("secrets.ejs");
+        }
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+})
 
 passport.use(
     new Strategy(
